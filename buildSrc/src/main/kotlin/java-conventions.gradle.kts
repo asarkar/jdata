@@ -65,7 +65,7 @@ spotless {
     }
 }
 
-val ci: Boolean by lazy { System.getenv("CI") != null }
+val ci: Boolean by lazy { listOf("CI", "JITPACK").any { System.getenv(it) != null } }
 
 tasks.named("spotlessCheck") {
     enabled = ci

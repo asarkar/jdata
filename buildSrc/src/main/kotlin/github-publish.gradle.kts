@@ -19,8 +19,14 @@ val licenseName: String by project
 val licenseUrl: String by project
 val developerName: String by project
 val developerEmail: String by project
-val gitHubUsername: String? by lazy { System.getenv("GITHUB_REPOSITORY_OWNER") }
-val gitHubUrl: String? by lazy { "github.com/${System.getenv("GITHUB_REPOSITORY")}" }
+// https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#default-environment-variables
+// https://docs.jitpack.io/building/#build-environment
+val gitHubUsername: String? by lazy {
+    System.getenv("GITHUB_REPOSITORY_OWNER") ?: project.findProperty("gitHubUsername") as String?
+}
+val gitHubUrl: String? by lazy {
+    "github.com/${System.getenv("GITHUB_REPOSITORY") ?: project.rootProject.name}"
+}
 
 publishing {
     publications {
