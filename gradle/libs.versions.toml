@@ -1,0 +1,26 @@
+[versions]
+junit5 = "5.12.2"
+assertj = "3.27.3"
+spotbugs = "4.9.3"
+errorprone = "2.38.0"
+spotbugsPlugin = "6.1.9"
+spotlessPlugin = "7.0.3"
+errorpronePlugin = "4.2.0"
+jackson = "2.19.0"
+palantirJavaFmt = "2.63.0"
+pmd = "7.13.0"
+
+[libraries]
+junit-bom = {module = "org.junit:junit-bom", version.ref = "junit5"}
+assertj-core = {module = "org.assertj:assertj-core", version.ref = "assertj"}
+jackson-databind = {module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson"}
+spotbugs-annotations = {module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs"}
+errorprone = {module = "com.google.errorprone:error_prone_core", version.ref = "errorprone"}
+
+[plugins]
+# https://github.com/spotbugs/spotbugs-gradle-plugin
+spotbugs = { id = "com.github.spotbugs", version.ref = "spotbugsPlugin" }
+# https://github.com/diffplug/spotless/tree/main/plugin-gradle
+spotless = { id = "com.diffplug.spotless", version.ref = "spotlessPlugin" }
+# https://github.com/tbroyer/gradle-errorprone-plugin
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
