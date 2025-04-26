@@ -66,13 +66,15 @@ spotless {
 }
 
 val ci: Boolean by lazy { listOf("CI", "JITPACK").any { System.getenv(it) != null } }
+val spotlessTasks = arrayOf("spotlessApply", "spotlessCheck")
+val spotlessTask = spotlessTasks[true.compareTo(ci)]  // true > false
 
-tasks.named("spotlessCheck") {
-    enabled = ci
+tasks.named(spotlessTask) {
+    enabled = false
 }
 
 tasks.named("check") {
-    dependsOn("spotlessApply")
+    dependsOn(spotlessTasks[0])
 }
 
 tasks.withType<Test> {
