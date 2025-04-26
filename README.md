@@ -9,7 +9,13 @@ Meant to be used in personal projects only, and makes absolutely no guarantees.
 
 ## Development
 
-Choose according to your build system from [this article](https://jitpack.io/#io.jitpack/gradle-simple).
+1. Add the JitPack Maven repository to your Maven or Gradle build:
+   https://jitpack.io
+
+2. Dependency group id = `com.asarkar.jdata`. There are two artifacts under this group, 
+   `jdata` and `junit`, choose one or both according to your need.
+
+3. For version, use a 10-character commit hash. For release version, use release tag.
 
 ## Usage
 
@@ -49,7 +55,7 @@ TreeNode.prettyPrint(root);
 
 ### junit
 
-[IterableConverter](junit/src/main/java/com/asarkar/junit/IterableConverter.java)
+* [IterableConverter](junit/src/main/java/com/asarkar/junit/IterableConverter.java)
 
 ```
 class MyTests {
@@ -66,7 +72,7 @@ class MyTests {
 }
 ```
 
-[FileSource](junit/src/main/java/com/asarkar/junit/FileSource.java)
+* [FileSource](junit/src/main/java/com/asarkar/junit/FileSource.java)
 
 ```
 class MyTests {
@@ -90,6 +96,7 @@ class MyTests {
 `@FileSource` may be used along with other JUnit 5 source of arguments, such as `@CsvSource`.
 The value may contain multiple filenames, and the annotation may be repeated using `@FileSources`.
 It can convert any valid JSON array to a compatible Java container, even 2D arrays or lists of lists.
+See Javadoc for more details.
 
 ## Build and Lint
 ```
