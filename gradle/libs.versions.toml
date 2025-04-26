@@ -9,10 +9,12 @@ errorpronePlugin = "4.2.0"
 jackson = "2.19.0"
 palantirJavaFmt = "2.63.0"
 pmd = "7.13.0"
+mockito = "5.17.0"
 
 [libraries]
 junit-bom = {module = "org.junit:junit-bom", version.ref = "junit5"}
 assertj-core = {module = "org.assertj:assertj-core", version.ref = "assertj"}
+mockito-core = {module = "org.mockito:mockito-core", version.ref = "mockito"}
 jackson-databind = {module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson"}
 spotbugs-annotations = {module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs"}
 errorprone = {module = "com.google.errorprone:error_prone_core", version.ref = "errorprone"}

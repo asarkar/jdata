@@ -8,12 +8,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class TreeNodeTests {
-    @ParameterizedTest
-    @CsvSource(
-            delimiter = '|',
-            textBlock =
-                    """
+class TreeNodeTest {
+  @ParameterizedTest
+  @CsvSource(
+      delimiter = '|',
+      textBlock =
+          """
     []
     [1]
     [1, 2]
@@ -29,14 +29,14 @@ class TreeNodeTests {
     [10, 5, 15, 3, 7, 13, 18, 1, null, 6]
     [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4]
       """)
-    void testTreeNode(@ConvertWith(IterableConverter.class) List<Integer> nums) {
-        TreeNode<Integer> root = TreeNode.fromList(nums);
-        if (nums.isEmpty()) {
-            assertThat(root).isNull();
-        } else {
-            assertThat(root).isNotNull();
-            List<Integer> actual = TreeNode.levelOrder(root);
-            assertThat(actual).isEqualTo(nums);
-        }
+  void testTreeNode(@ConvertWith(IterableConverter.class) List<Integer> nums) {
+    TreeNode<Integer> root = TreeNode.fromList(nums);
+    if (nums.isEmpty()) {
+      assertThat(root).isNull();
+    } else {
+      assertThat(root).isNotNull();
+      List<Integer> actual = TreeNode.levelOrder(root);
+      assertThat(actual).isEqualTo(nums);
     }
+  }
 }

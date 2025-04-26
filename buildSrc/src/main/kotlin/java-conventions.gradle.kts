@@ -42,6 +42,7 @@ dependencies {
     testImplementation(platform(libs.findLibrary("junit-bom").get()))
     testImplementation("org.junit.jupiter:junit-jupiter-params")
     testImplementation(libs.findLibrary("assertj-core").get())
+    testImplementation(libs.findLibrary("mockito-core").get())
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
@@ -59,7 +60,7 @@ spotbugs {
 
 spotless {
     java {
-        palantirJavaFormat("${libs.findVersion("palantirJavaFmt").get()}")
+        palantirJavaFormat("${libs.findVersion("palantirJavaFmt").get()}").style("GOOGLE")
         toggleOffOn()
     }
 }

@@ -13,9 +13,9 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface FileSources {
 
-    /**
-     * An array of one or more {@link FileSource @FileSource}
-     * annotations.
-     */
-    FileSource[] value();
+  /**
+   * An array of one or more {@link FileSource @FileSource}
+   * annotations.
+   */
+  FileSource[] value();
 }

@@ -36,42 +36,42 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 @ArgumentsSource(FileArgumentsProvider.class)
 public @interface FileSource {
 
-    /**
-     * The classpath resources to use as the sources of arguments; must not
-     * be empty.
-     */
-    String[] value() default {};
+  /**
+   * The classpath resources to use as the sources of arguments; must not
+   * be empty.
+   */
+  String[] value() default {};
 
-    /**
-     * The encoding to use when reading the CSV files; must be a valid charset.
-     *
-     * <p>Defaults to {@code "UTF-8"}.
-     *
-     * @see java.nio.charset.StandardCharsets
-     */
-    String encoding() default "UTF-8";
+  /**
+   * The encoding to use when reading the CSV files; must be a valid charset.
+   *
+   * <p>Defaults to {@code "UTF-8"}.
+   *
+   * @see java.nio.charset.StandardCharsets
+   */
+  String encoding() default "UTF-8";
 
-    /**
-     * Any line beginning with this character will be interpreted as a comment
-     * and will be ignored.
-     *
-     * <p>Defaults to {@code '#'}.
-     */
-    char comment() default '#';
+  /**
+   * Any line beginning with this character will be interpreted as a comment
+   * and will be ignored.
+   *
+   * <p>Defaults to {@code '#'}.
+   */
+  char comment() default '#';
 
-    /**
-     * A list of strings that should be interpreted as {@code null} references.
-     *
-     * <p>For example, you may wish for certain values such as {@code "N/A"} or
-     * {@code "NIL"} to be converted to {@code null} references.
-     */
-    String[] nullValues() default {};
+  /**
+   * A list of strings that should be interpreted as {@code null} references.
+   *
+   * <p>For example, you may wish for certain values such as {@code "N/A"} or
+   * {@code "NIL"} to be converted to {@code null} references.
+   */
+  String[] nullValues() default {};
 
-    /**
-     * Controls whether leading and trailing whitespace characters of unquoted
-     * CSV columns should be ignored.
-     *
-     * <p>Defaults to {@code true}.
-     */
-    boolean ignoreLeadingAndTrailingWhitespace() default true;
+  /**
+   * Controls whether leading and trailing whitespace characters of unquoted
+   * CSV columns should be ignored.
+   *
+   * <p>Defaults to {@code true}.
+   */
+  boolean ignoreLeadingAndTrailingWhitespace() default true;
 }
