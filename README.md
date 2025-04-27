@@ -9,13 +9,16 @@ Meant to be used in personal projects only, and makes absolutely no guarantees.
 
 ## Development
 
-1. Add the JitPack Maven repository to your Maven or Gradle build:
+**Minimum Requirement**: Java 17.
+
+1. Add the JitPack repository to your Maven or Gradle build:
    https://jitpack.io
 
-2. Dependency group id = `com.asarkar.jdata`. There are two artifacts under this group, 
+2. Dependency group id = `com.asarkar.jdata`. There are two artifacts under this group,
    `jdata` and `junit`, choose one or both according to your need.
 
-3. For development version, use a 10-character commit hash. For release version, use release tag.
+3. For development version, use a [commit hash](https://github.com/asarkar/jdata/commits/).
+   For release version, use [tag](https://github.com/asarkar/jdata/tags).
 
 ## Usage
 
@@ -98,11 +101,6 @@ The value may contain multiple filenames, and the annotation may be repeated usi
 It can convert any valid JSON array to a compatible Java container, even 2D arrays or lists of lists.
 
 See Javadoc for more details.
-
-## Build and Lint
-```
-./gradlew clean build
-```
 
 ## License
 
