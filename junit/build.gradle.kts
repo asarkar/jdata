@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     implementation(libs.jackson.databind)
-    implementation("org.junit.jupiter:junit-jupiter-params")
+    implementation(libs.junit.params)
 }

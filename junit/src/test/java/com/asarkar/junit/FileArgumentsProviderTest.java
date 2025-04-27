@@ -50,6 +50,26 @@ class FileArgumentsProviderTest {
     assertThat(actual).containsExactly(new String[] {"1", null}, new String[] {"a", null});
   }
 
+  @Test
+  void testIgnoreWhitespaces() {
+    var fs = IgnoreWhitespaces.class.getAnnotation(FileSource.class);
+    var actual = new FileArgumentsProviderImpl()
+        .provideArguments(ctx, fs)
+        .map(Arguments::get)
+        .toList();
+    assertThat(actual).containsExactly(new String[] {"1", "2"}, new String[] {"a", "b"});
+  }
+
+  @Test
+  void testRetainWhitespaces() {
+    var fs = RetainWhitespaces.class.getAnnotation(FileSource.class);
+    var actual = new FileArgumentsProviderImpl()
+        .provideArguments(ctx, fs)
+        .map(Arguments::get)
+        .toList();
+    assertThat(actual).containsExactly(new String[] {"    1", "    2"}, new String[] {"a", " b"});
+  }
+
   void mockTestMethod(String a, String b) {
     // PMD made me do it!
   }
@@ -67,3 +87,9 @@ class Comment {}
     value = "/null.txt",
     nullValues = {"nil", "n/a"})
 class NullValues {}
+
+@FileSource("/whitespace.txt")
+class IgnoreWhitespaces {}
+
+@FileSource(value = "/whitespace.txt", ignoreLeadingAndTrailingWhitespace = false)
+class RetainWhitespaces {}

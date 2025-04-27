@@ -15,7 +15,7 @@ Meant to be used in personal projects only, and makes absolutely no guarantees.
 2. Dependency group id = `com.asarkar.jdata`. There are two artifacts under this group, 
    `jdata` and `junit`, choose one or both according to your need.
 
-3. For version, use a 10-character commit hash. For release version, use release tag.
+3. For development version, use a 10-character commit hash. For release version, use release tag.
 
 ## Usage
 
@@ -96,6 +96,7 @@ class MyTests {
 `@FileSource` may be used along with other JUnit 5 source of arguments, such as `@CsvSource`.
 The value may contain multiple filenames, and the annotation may be repeated using `@FileSources`.
 It can convert any valid JSON array to a compatible Java container, even 2D arrays or lists of lists.
+
 See Javadoc for more details.
 
 ## Build and Lint

@@ -13,6 +13,7 @@ mockito = "5.17.0"
 
 [libraries]
 junit-bom = {module = "org.junit:junit-bom", version.ref = "junit5"}
+junit-params = {module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5"}
 assertj-core = {module = "org.assertj:assertj-core", version.ref = "assertj"}
 mockito-core = {module = "org.mockito:mockito-core", version.ref = "mockito"}
 jackson-databind = {module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson"}
