@@ -70,6 +70,16 @@ class FileArgumentsProviderTest {
     assertThat(actual).containsExactly(new String[] {"    1", "    2"}, new String[] {"a", " b"});
   }
 
+  @Test
+  void testIgnoreBlankLines() {
+    var fs = BlankLines.class.getAnnotation(FileSource.class);
+    var actual = new FileArgumentsProviderImpl()
+        .provideArguments(ctx, fs)
+        .map(Arguments::get)
+        .toList();
+    assertThat(actual).containsExactly(new String[] {"a", "b"}, new String[] {"c", "d"});
+  }
+
   void mockTestMethod(String a, String b) {
     // PMD made me do it!
   }
@@ -93,3 +103,6 @@ class IgnoreWhitespaces {}
 
 @FileSource(value = "/whitespace.txt", ignoreLeadingAndTrailingWhitespace = false)
 class RetainWhitespaces {}
+
+@FileSource("/blank-lines.txt")
+class BlankLines {}

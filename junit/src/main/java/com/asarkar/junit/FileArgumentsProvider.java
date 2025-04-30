@@ -124,6 +124,7 @@ public class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<File
       nullValues = Set.of(fileSource.nullValues());
     }
 
+    @SuppressWarnings("PMD.CyclomaticComplexity")
     String[] readLines() {
       try {
         String[] lines = new String[numLines];
@@ -137,7 +138,7 @@ public class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<File
           if (fileSource.ignoreLeadingAndTrailingWhitespace()) {
             line = line.trim();
           }
-          if (isComment(line)) {
+          if (isComment(line) || line.isEmpty()) {
             continue;
           }
           if (!isNullValue(line)) {
