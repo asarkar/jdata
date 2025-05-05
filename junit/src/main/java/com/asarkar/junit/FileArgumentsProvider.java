@@ -20,7 +20,6 @@ import org.junit.jupiter.params.provider.AnnotationBasedArgumentsProvider;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.platform.commons.JUnitException;
 import org.junit.platform.commons.PreconditionViolationException;
-import org.junit.platform.commons.util.Preconditions;
 
 /**
  * Reads a file n lines at a time such that the {@link Arguments} for a test
@@ -28,7 +27,7 @@ import org.junit.platform.commons.util.Preconditions;
  *
  * @see <a href="https://github.com/junit-team/junit5/blob/main/junit-jupiter-params/src/main/java/org/junit/jupiter/params/provider/CsvFileArgumentsProvider.java">CsvFileArgumentsProvider</a>
  */
-public class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<FileSource> {
+class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<FileSource> {
 
   @Override
   protected Stream<? extends Arguments> provideArguments(
@@ -40,9 +39,13 @@ public class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<File
 
   @SuppressWarnings("PMD.UseVarargs")
   private Stream<Path> testResources(Class<?> testClass, String[] resources) {
-    Preconditions.notEmpty(resources, "resources must not be empty");
+    if (isEmpty((Object) resources)) {
+      throw new PreconditionViolationException("resources must not be empty");
+    }
     return Arrays.stream(resources).map(path -> {
-      Preconditions.notBlank(path, () -> "Individual resources must not be null or blank");
+      if (isBlank(path)) {
+        throw new PreconditionViolationException("Individual resources must not be null or blank");
+      }
       URL resource = testClass.getResource(path);
       if (resource == null) {
         throw new JUnitException("Could not resolve path: " + path);
@@ -53,6 +56,14 @@ public class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<File
         throw new PreconditionViolationException(e.getMessage(), e);
       }
     });
+  }
+
+  private static boolean isEmpty(Object... arr) {
+    return arr == null || arr.length == 0;
+  }
+
+  private static boolean isBlank(String s) {
+    return s == null || s.chars().allMatch(i -> Character.isWhitespace((char) i));
   }
 
   // PMD doesn't know BufferedReader is closed when the stream is consumed.

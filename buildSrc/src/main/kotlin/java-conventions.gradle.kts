@@ -82,6 +82,9 @@ tasks.withType<Test> {
     testLogging {
         showStandardStreams = true
     }
+    // Suppress warning: Sharing is only supported for boot loader classes...
+    // https://stackoverflow.com/q/54205486/839733
+    jvmArgs("-Xshare:off")
 }
 
 tasks.withType<SpotBugsTask> {
