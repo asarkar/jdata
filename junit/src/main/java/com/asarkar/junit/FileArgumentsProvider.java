@@ -37,7 +37,6 @@ class FileArgumentsProvider extends AnnotationBasedArgumentsProvider<FileSource>
         .flatMap(file -> toStream(file, numLines, fileSource));
   }
 
-  @SuppressWarnings("PMD.UseVarargs")
   private Stream<Path> testResources(Class<?> testClass, String[] resources) {
     if (isEmpty((Object) resources)) {
       throw new PreconditionViolationException("resources must not be empty");

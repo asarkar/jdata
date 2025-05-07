@@ -12,6 +12,7 @@
     <!--  https://github.com/pmd/pmd/tree/main/pmd-java/src/main/resources/category/java  -->
     <rule ref="category/java/bestpractices.xml">
         <exclude name="UnitTestContainsTooManyAsserts"/>
+        <exclude name="UseVarargs"/>
     </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="MethodArgumentCouldBeFinal"/>

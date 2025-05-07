@@ -56,6 +56,20 @@ TreeNode.prettyPrint(root);
 2   3
 ```
 
+* [FenwickTree](jdata/src/main/java/com/asarkar/data/FenwickTree.java)
+
+```
+int[] arr = new int[] {1, 2, 3, 4, 5, 6};
+FenwickTree tree = new FenwickTree(arr);
+tree.queryRange(1, 2);  // =3
+
+tree = new FenwickTree(6);
+for (int i = 1; i <= 6; i++) {
+   tree.add(i, i);
+}
+tree.queryRange(1, 2);  // =3
+```
+
 ### junit
 
 * [IterableConverter](junit/src/main/java/com/asarkar/junit/IterableConverter.java)
