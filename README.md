@@ -5,11 +5,13 @@ questions locally.
 
 Meant to be used in personal projects only, and makes absolutely no guarantees.
 
-[![](https://github.com/asarkar/jdata/workflows/CI/badge.svg)](https://github.com/asarkar/jdata/actions)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-black?style=for-the-badge&logo=github&color=%23fe8e86)](https://github.com/sponsors/asarkar)
+[![CI](<https://img.shields.io/github/actions/workflow/status/asarkar/jdata/ci.yml?branch=main&style=for-the-badge&logo=github>)](https://github.com/asarkar/grpc-test/actions?query=workflow%3A%22CI%22)
+[![JitPack](https://img.shields.io/jitpack/version/com.asarkar/jdata?style=for-the-badge&logo=jitpack&color=blue)](https://jitpack.io/#com.asarkar/jdata)
+[![License](https://img.shields.io/github/license/asarkar/jdata?style=for-the-badge&logo=apache&color=brightgreen)](https://www.apache.org/licenses/LICENSE-2.0)
+[![JVM](https://img.shields.io/badge/dynamic/regex?style=for-the-badge&logo=openjdk&color=blue&label=JVM&url=https%3A%2F%2Fraw.githubusercontent.com%2Fasarkar%2Fjdata%2Frefs%2Fheads%2Fmain%2F.java-version&search=%5Cd%2B)](https://github.com/asarkar/jdata/blob/main/.java-version)
 
 ## Development
-
-**Minimum Requirement**: Java 17.
 
 1. Add the JitPack repository to your Maven or Gradle build:
    https://jitpack.io
@@ -115,7 +117,3 @@ The value may contain multiple filenames, and the annotation may be repeated usi
 It can convert any valid JSON array to a compatible Java container, even 2D arrays or lists of lists.
 
 See Javadoc for more details.
-
-## License
-
-Released under [Apache License v2.0](LICENSE).

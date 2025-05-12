@@ -1,6 +1,6 @@
 plugins {
     id("java-conventions")
-    id("github-publish")
+    id("java-publish")
 }
 
 dependencies {

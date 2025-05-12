@@ -17,14 +17,15 @@ plugins {
     id("net.ltgt.errorprone")
 }
 
+val javaVersion =
+    providers
+        .provider { rootDir.resolve(".java-version").readText(Charsets.UTF_8).trim() }
+        .map(JavaLanguageVersion::of)
+
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = javaVersion
     }
-}
-
-tasks.compileJava {
-    options.compilerArgs.addAll(listOf("-Werror"))
 }
 
 repositories {
@@ -40,11 +41,10 @@ dependencies {
     compileOnly(libs.findLibrary("spotbugs-annotations").get())
     errorprone(libs.findLibrary("errorprone").get())
     testImplementation(platform(libs.findLibrary("junit-bom").get()))
-    testImplementation("org.junit.jupiter:junit-jupiter-params")
+    testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation(libs.findLibrary("assertj-core").get())
     testImplementation(libs.findLibrary("mockito-core").get())
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 pmd {
@@ -66,45 +66,46 @@ spotless {
 }
 
 val ci: Boolean by lazy { listOf("CI", "JITPACK").any { System.getenv(it) != null } }
-val spotlessTasks = arrayOf("spotlessApply", "spotlessCheck")
-val spotlessTask = spotlessTasks[true.compareTo(ci)]  // true > false
-
-tasks.named(spotlessTask) {
-    enabled = false
-}
-
-tasks.named("check") {
-    dependsOn(spotlessTasks[0])
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging {
-        showStandardStreams = true
-    }
-    // Suppress warning: Sharing is only supported for boot loader classes...
-    // https://stackoverflow.com/q/54205486/839733
-    jvmArgs("-Xshare:off")
-}
-
-tasks.withType<SpotBugsTask> {
-    reports.create("html") {
-        required = !ci
-    }
-}
-
-tasks.withType<Pmd> {
-    reports {
-        xml.required = false
-        html.required = !ci
-    }
-    isConsoleOutput = ci
-}
 
 tasks {
+    compileJava {
+        options.compilerArgs.addAll(listOf("-Werror"))
+    }
+    test {
+        useJUnitPlatform()
+        testLogging {
+            showStandardStreams = true
+        }
+        // Suppress warning: Sharing is only supported for boot loader classes...
+        // https://stackoverflow.com/q/54205486/839733
+        jvmArgs("-Xshare:off")
+    }
+
+    withType<SpotBugsTask> {
+        reports.create("html") {
+            required = !ci
+        }
+    }
+
+    withType<Pmd> {
+        reports {
+            xml.required = false
+            html.required = !ci
+        }
+        isConsoleOutput = ci
+    }
+
     javadoc {
         options {
             (this as CoreJavadocOptions).addBooleanOption("Xdoclint:none", true)
         }
+    }
+
+    val spotlessApply by existing {
+        enabled = !ci
+    }
+
+    named("spotlessCheck") {
+        dependsOn(spotlessApply)
     }
 }
