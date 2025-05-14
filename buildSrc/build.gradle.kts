@@ -12,6 +12,7 @@ dependencies {
     implementation(plugin(libs.plugins.spotbugs))
     implementation(plugin(libs.plugins.spotless))
     implementation(plugin(libs.plugins.errorprone))
+    implementation(plugin(libs.plugins.axion))
 }
 
 // Transforms a Gradle Plugin alias from a Version Catalog

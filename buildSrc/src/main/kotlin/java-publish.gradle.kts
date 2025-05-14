@@ -3,6 +3,7 @@ import java.net.URI
 plugins {
     `java-library`
     `maven-publish`
+    id("pl.allegro.tech.build.axion-release")
 }
 
 java {
@@ -17,12 +18,18 @@ val gitHubDomain: String = URI(gitHubUrl).host
 val gitHubRepoUrl = "$gitHubUrl/$gitHubRepo"
 
 val projectGroup: String by project
-val projectVersion: String by project
 val projectDescription: String by project
 val licenseName: String by project
 val licenseUrl: String by project
 
-version = projectVersion
+scmVersion {
+    useHighestVersion = true
+    tag {
+        prefix = ""
+    }
+}
+
+version = scmVersion.version
 
 publishing {
     publications {

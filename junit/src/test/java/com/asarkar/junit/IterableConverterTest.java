@@ -44,4 +44,10 @@ class IterableConverterTest {
     assertThat(converter.convert("[[1], [2]]", List.class))
         .isEqualTo(List.of(List.of(1), List.of(2)));
   }
+
+  @Test
+  void testNoConvert() {
+    var converter = new IterableConverter();
+    assertThat(converter.convert(List.of(1), List.class)).isEqualTo(List.of(1));
+  }
 }
