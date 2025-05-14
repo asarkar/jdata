@@ -1,4 +1,5 @@
 import com.github.spotbugs.snom.SpotBugsTask
+import net.ltgt.gradle.errorprone.errorprone
 
 // https://docs.gradle.org/current/samples/sample_publishing_convention_plugins.html
 // https://docs.gradle.org/current/userguide/version_catalogs.html
@@ -68,8 +69,11 @@ spotless {
 val ci = providers.environmentVariable("CI")
 
 tasks {
-    compileJava {
+    withType(JavaCompile::class) {
         options.compilerArgs.addAll(listOf("-Werror"))
+        options.errorprone {
+            disable("StringSplitter")
+        }
     }
     test {
         useJUnitPlatform()
