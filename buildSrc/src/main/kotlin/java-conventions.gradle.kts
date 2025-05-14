@@ -65,7 +65,7 @@ spotless {
     }
 }
 
-val ci: Boolean by lazy { listOf("CI", "JITPACK").any { System.getenv(it) != null } }
+val ci = providers.environmentVariable("CI")
 
 tasks {
     compileJava {
@@ -83,16 +83,16 @@ tasks {
 
     withType<SpotBugsTask> {
         reports.create("html") {
-            required = !ci
+            required = !ci.isPresent
         }
     }
 
     withType<Pmd> {
         reports {
             xml.required = false
-            html.required = !ci
+            html.required = !ci.isPresent
         }
-        isConsoleOutput = ci
+        isConsoleOutput = ci.isPresent
     }
 
     javadoc {
@@ -102,7 +102,7 @@ tasks {
     }
 
     val spotlessApply by existing {
-        enabled = !ci
+        enabled = !ci.isPresent
     }
 
     named("spotlessCheck") {
